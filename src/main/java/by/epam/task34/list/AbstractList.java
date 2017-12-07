@@ -1,5 +1,6 @@
 package by.epam.task34.list;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public abstract class AbstractList<E> extends AbstractCollection<E> implements List<E> {
@@ -7,23 +8,25 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
     protected AbstractList() {
     }
 
+    @Override
     public boolean add(E e) {
         add(size(), e);
         return true;
     }
 
+    @Override
     public Iterator<E> iterator() {
         return new Itr();
     }
 
+    @Override
     public boolean equals(Object o) {
         if (o == this)
             return true;
 
-        if (!(o instanceof java.util.List))
+        if (!(o instanceof List))
             return false;
 
-        // TODO: 26.11.2017 check
         Iterator<E> it1 = iterator();
         Iterator<?> it2 = ((List<?>) o).iterator();
         while (it1.hasNext() && it2.hasNext()) {
@@ -35,6 +38,7 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
         return !(it1.hasNext() || it2.hasNext());
     }
 
+    @Override
     public int hashCode() {
         int hashCode = 1;
         for(int i = 0; i < this.size(); i++) {
@@ -43,6 +47,10 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
         }
         return hashCode;
     }
+
+    /**
+     *  ---------------------------- Iterator
+     * */
 
     private class Itr implements Iterator<E> {
 

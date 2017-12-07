@@ -1,5 +1,7 @@
 package by.epam.task34.list;
 
+import java.lang.Iterable;
+
 public interface Collection<E> extends Iterable<E> {
 
     int size();

@@ -1,5 +1,7 @@
 package by.epam.task34.list;
 
+import java.util.Iterator;
+
 public abstract class AbstractCollection<E> implements Collection<E> {
 
     protected AbstractCollection() {

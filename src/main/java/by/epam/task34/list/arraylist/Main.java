@@ -1,7 +1,29 @@
-package by.epam.task34.list;
+package by.epam.task34.list.arraylist;
+
+import by.epam.task34.list.List;
+import by.epam.task34.list.arraylist.ArrayList;
+
+import java.util.Iterator;
 
 public class Main {
     public static void main(String[] args) {
+        testIterator();
+    }
+
+    private static void testIterator() {
+        List<String> list = new ArrayList<>();
+
+        for(int i = 0; i < 10; i++) {
+            list.add("" + i);
+        }
+
+        Iterator it = list.iterator();
+        while (it.hasNext()) {
+            System.out.println("Print next: " + it.next());
+        }
+    }
+
+    private static void test() {
         List<Integer> list = new ArrayList<Integer>();
         System.out.println(list);
         System.out.println("add 0...50");

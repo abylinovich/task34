@@ -1,14 +1,20 @@
-package by.epam.task34.list;
+package by.epam.task34.list.arraylist;
+
+import by.epam.task34.list.AbstractList;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class ArrayList<E> extends AbstractList<E> implements Serializable {
+
+    private static final long serialVersionUID = 8683452581122892189L;
 
     private static final int DEFAULT_CAPACITY = 10;
     private static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE - 8;
 
-    private Object[] elementData;
+    transient Object[] elementData;
     private int size;
 
     public ArrayList(int initialCapacity) {
@@ -72,6 +78,7 @@ public class ArrayList<E> extends AbstractList<E> implements Serializable {
         rangeCheckForAdd(index);
 
         ensureCapacity(size + 1);
+
         System.arraycopy(elementData, index, elementData, index + 1,
                 size - index);
         elementData[index] = element;
@@ -106,27 +113,27 @@ public class ArrayList<E> extends AbstractList<E> implements Serializable {
         return "Index: " + index + ", Size: " + size;
     }
 
-    /*public Iterator<E> iterator() {
-        return new Itr();
-    }*/
+/**
+ * --------------------------------------- Iterator
+ * */
 
-    /*private class Itr implements Iterator<E> {
+    public Iterator<E> iterator() {
+        return new Itr();
+    }
+
+    private class Itr implements Iterator<E> {
         int cursor;
         int lastRet = -1;
-        int expectedModCount = 0;
 
         public boolean hasNext() {
             return cursor != size;
         }
 
         public E next() {
-            checkForComodification();
             int i = cursor;
             if (i >= size)
                 throw new NoSuchElementException();
-            Object[] elementData = this.elementData;
-            if (i >= elementData.length)
-                throw new ConcurrentModificationException();
+            Object[] elementData = ArrayList.this.elementData;
             cursor = i + 1;
             return (E) elementData[lastRet = i];
         }
@@ -134,49 +141,16 @@ public class ArrayList<E> extends AbstractList<E> implements Serializable {
         public void remove() {
             if (lastRet < 0)
                 throw new IllegalStateException();
-            checkForComodification();
-
-            try {
-                java.util.ArrayList.this.remove(lastRet);
-                cursor = lastRet;
-                lastRet = -1;
-                expectedModCount = modCount;
-            } catch (IndexOutOfBoundsException ex) {
-                throw new ConcurrentModificationException();
-            }
+            ArrayList.this.remove(lastRet);
+            cursor = lastRet;
+            lastRet = -1;
         }
 
-        @Override
-        @SuppressWarnings("unchecked")
-        public void forEachRemaining(Consumer<? super E> consumer) {
-            Objects.requireNonNull(consumer);
-            final int size = java.util.ArrayList.this.size;
-            int i = cursor;
-            if (i >= size) {
-                return;
-            }
-            final Object[] elementData = java.util.ArrayList.this.elementData;
-            if (i >= elementData.length) {
-                throw new ConcurrentModificationException();
-            }
-            while (i != size && modCount == expectedModCount) {
-                consumer.accept((E) elementData[i++]);
-            }
-            // update once at end of iteration to reduce heap write traffic
-            cursor = i;
-            lastRet = i - 1;
-            checkForComodification();
-        }
-
-        final void checkForComodification() {
-            if (modCount != expectedModCount)
-                throw new ConcurrentModificationException();
-        }
-    }*/
+    }
 
     @Override
     public String toString() {
-        return "ArrayList{" +
+        return "arraylist{" +
                 "size=" + size +
                 ", elementData=" + Arrays.toString(elementData) +
                 '}';
