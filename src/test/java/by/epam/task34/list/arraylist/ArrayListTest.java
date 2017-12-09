@@ -1,16 +1,16 @@
-package by.epam.test34.list.linkedlist;
+package by.epam.task34.list.arraylist;
 
+import by.epam.task34.list.arraylist.ArrayList;
 import by.epam.task34.list.List;
-import by.epam.task34.list.linkedlist.LinkedList;
 import junit.framework.TestCase;
 import org.junit.Test;
 
 import java.util.Iterator;
 
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class LinkedListTest extends TestCase {
+public class ArrayListTest extends TestCase {
 
 
     private List<String> emptyList;
@@ -18,8 +18,8 @@ public class LinkedListTest extends TestCase {
 
     @Override
     protected void setUp() throws Exception {
-        emptyList = new LinkedList<>();
-        filledList = new LinkedList<>();
+        emptyList = new ArrayList<>();
+        filledList = new ArrayList<>();
         filledList.add("one");
         filledList.add("two");
         filledList.add("three");
@@ -71,14 +71,14 @@ public class LinkedListTest extends TestCase {
 
     @Test
     public void testSetByIndex() {
-        filledList.set(1, "test");
-        assertEquals(filledList.get(1), "test");
+        filledList.set(1, "testContains");
+        assertEquals(filledList.get(1), "testContains");
     }
 
     @Test
     public void testAddByIndex() {
-        filledList.add(1, "test");
-        assertEquals(filledList.get(1), "test");
+        filledList.add(1, "testContains");
+        assertEquals(filledList.get(1), "testContains");
     }
 
     @Test
