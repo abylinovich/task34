@@ -71,14 +71,14 @@ public class LinkedListTest extends TestCase {
 
     @Test
     public void testSetByIndex() {
-        filledList.set(1, "testContains");
-        assertEquals(filledList.get(1), "testContains");
+        filledList.set(1, "testContainsRecursive");
+        assertEquals(filledList.get(1), "testContainsRecursive");
     }
 
     @Test
     public void testAddByIndex() {
-        filledList.add(1, "testContains");
-        assertEquals(filledList.get(1), "testContains");
+        filledList.add(1, "testContainsRecursive");
+        assertEquals(filledList.get(1), "testContainsRecursive");
     }
 
     @Test

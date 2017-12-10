@@ -2,10 +2,10 @@ package by.epam.task34.tree;
 
 public interface Tree<T> {
 
-    boolean contains(T element);
+    boolean contains(T element, ByPassStrategy strategy);
 
-    void add(T element);
+    void add(T element, ByPassStrategy strategy);
 
-    void delete(T element);
+    void delete(T element, ByPassStrategy strategy);
 
 }
